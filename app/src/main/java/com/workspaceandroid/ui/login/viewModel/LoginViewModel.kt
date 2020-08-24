@@ -23,7 +23,7 @@ class LoginViewModel @Inject constructor(private val authorizationRepository: Au
 
     //signup status, true when request is successful
     val signUpLiveData by lazy { MutableLiveData<Boolean>() }
-    
+
     fun authorization(
         email: String,
         password: String
