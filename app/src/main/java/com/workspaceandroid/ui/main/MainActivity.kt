@@ -2,18 +2,24 @@ package com.workspaceandroid.ui.main
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.annotation.IdRes
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.workspaceandroid.R
 import com.workspaceandroid.baseui.BaseActivity
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var viewPager: ViewPager
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var mainPagerAdapter: MainPagerAdapter
+    private lateinit var mainToolbar: Toolbar
+    private var selectedPage = 1;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,14 +30,23 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         mainPagerAdapter = MainPagerAdapter(supportFragmentManager)
 
+        mainToolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(mainToolbar)
+
         // Set items to be displayed.
-        mainPagerAdapter.setItems(arrayListOf(MainScreen.LOGS, MainScreen.PROGRESS, MainScreen.PROFILE))
+        mainPagerAdapter.setItems(
+            arrayListOf(
+                MainScreen.LOGS,
+                MainScreen.PROGRESS,
+                MainScreen.PROFILE
+            )
+        )
 
         // Show the default screen.
         val defaultScreen = MainScreen.LOGS
         scrollToScreen(defaultScreen)
         selectBottomNavigationViewMenuItem(defaultScreen.menuItemId)
-        supportActionBar?.setTitle(defaultScreen.titleStringId)
+//        supportActionBar?.setTitle(defaultScreen.titleStringId)
 
         // Set the listener for item selection in the bottom navigation view.
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
@@ -40,10 +55,39 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         // menu item and change the title to proper values when selected.
         viewPager.adapter = mainPagerAdapter
         viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+            private var prevPosition = 0.0f
+
             override fun onPageSelected(position: Int) {
+                val animation1: Animation =
+                    AnimationUtils.loadAnimation(applicationContext, R.anim.sliding)
+                tv_main_toolbar_title.startAnimation(animation1)
+                selectedPage = position;
                 val selectedScreen = mainPagerAdapter.getItems()[position]
                 selectBottomNavigationViewMenuItem(selectedScreen.menuItemId)
-                supportActionBar?.setTitle(selectedScreen.titleStringId)
+                tv_main_toolbar_title.text = getString(selectedScreen.titleStringId)
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+//                Log.i(
+//                    "anim",
+//                    "position = " + position + " positionOffset = " + positionOffset + " positionOffsetPixels = " + positionOffsetPixels
+//                )
+//                //update previous position
+//                prevPosition = positionOffset;
+//
+//                val direction = if (selectedPage < position) -1 else 1
+//
+////                logoHolder.animate().translationX(logoHolder.getWidth() -positionOffset * logoHolder.getWidth()) .alpha(positionOffset).setDuration(0).start();
+//                tv_main_toolbar_title.animate()
+//                    .translationX(direction * positionOffset.toFloat())
+//                    .alpha(direction * positionOffset)
+//                    .setDuration(0)
+//                    .start();
             }
         })
     }
@@ -73,7 +117,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         getMainScreenForMenuItem(menuItem.itemId)?.let {
             scrollToScreen(it)
-            supportActionBar?.setTitle(it.titleStringId)
+            tv_main_toolbar_title.text = getString(it.titleStringId)
             return true
         }
         return false

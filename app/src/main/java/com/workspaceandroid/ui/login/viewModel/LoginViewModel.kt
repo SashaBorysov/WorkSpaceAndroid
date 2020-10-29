@@ -26,8 +26,8 @@ class LoginViewModel @Inject constructor(private val authorizationRepository: Au
 
     fun authorization(
         email: String,
-        password: String
-    ) {
+        password: String)
+    {
         requestStatusLiveData.postValue(NetworkState.LOADING)
         launch {
             authorizationRepository.authorization(

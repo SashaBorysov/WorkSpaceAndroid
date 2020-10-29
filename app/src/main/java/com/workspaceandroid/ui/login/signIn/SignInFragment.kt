@@ -45,7 +45,7 @@ class SignInFragment : BaseFragment() {
     }
 
     override fun onViewReady(inflatedView: View, args: Bundle?) {
-
+//        btn_login.performClick()
     }
 
     override fun initViewModel() {
@@ -63,6 +63,8 @@ class SignInFragment : BaseFragment() {
                 ApiRequestStatus.NO_INTERNET -> TODO()
             }
         })
+
+        onSignInButtonClicked()
 
 //        viewModel.getProfile()
     }

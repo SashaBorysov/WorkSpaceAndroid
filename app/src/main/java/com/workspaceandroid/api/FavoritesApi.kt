@@ -12,6 +12,6 @@ import retrofit2.http.POST
 interface FavoritesApi {
 
     @GET("/api/products")
-    fun favoritesAsync(): Deferred<Response<List<FavoritesResponse>>>
+    fun productsAsync(): Deferred<Response<List<FavoritesResponse>>>
 
 }

@@ -12,13 +12,13 @@ class MainRepository @Inject constructor(
     private val sharedPreferences: AppSharedPreferences
 ) {
 
-    suspend fun getWords(
+    suspend fun getProducts(
         onSuccess: suspend (response: List<FavoritesResponse>) -> Unit,
         onError: suspend (Int) -> Unit,
         onNetworkError: (NetworkState) -> Unit
     ) = safeApiCall(
         call = {
-            val response = favoritesApi.favoritesAsync().await()
+            val response = favoritesApi.productsAsync().await()
 
             val data = response.body()
 

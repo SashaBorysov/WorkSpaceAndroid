@@ -5,7 +5,6 @@ import com.workspaceandroid.R
 import com.workspaceandroid.baseui.BaseViewModel
 import com.workspaceandroid.data.remote.responses.FavoritesResponse
 import com.workspaceandroid.models.network.NetworkState
-import com.workspaceandroid.repositories.AuthorizationRepository
 import com.workspaceandroid.repositories.MainRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,10 +17,10 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
 
     val favoritesLiveData by lazy { MutableLiveData<List<FavoritesResponse>>() }
 
-    fun getWords() {
+    fun getProducts() {
         requestStatusLiveData.postValue(NetworkState.LOADING)
         launch {
-            mainRepository.getWords(
+            mainRepository.getProducts(
                 {
                     favoritesLiveData.postValue(it)
                     requestStatusLiveData.postValue(NetworkState.SUCCESSFUL)
