@@ -10,20 +10,20 @@ import com.workspaceandroid.BaseApplication
 import com.workspaceandroid.baseui.Injectable
 
 import dagger.android.AndroidInjection
+import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
 
 fun initInjections(app: BaseApplication): AppComponent {
 
     val appComponent = DaggerAppComponent.builder().application(app).build().also { it.inject(app) }
     val callback = object : Application.ActivityLifecycleCallbacks {
-        override fun onActivityPaused(activity: Activity?) {}
-        override fun onActivityResumed(activity: Activity?) {}
-        override fun onActivityStarted(activity: Activity?) {}
-        override fun onActivityDestroyed(activity: Activity?) {}
-        override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {}
-        override fun onActivityStopped(activity: Activity?) {}
-        override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+        override fun onActivityPaused(activity: Activity) {}
+        override fun onActivityResumed(activity: Activity) {}
+        override fun onActivityStarted(activity: Activity) {}
+        override fun onActivityDestroyed(activity: Activity) {}
+        override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
+        override fun onActivityStopped(activity: Activity) {}
+        override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
             handleActivity(activity)
         }
     }
@@ -32,7 +32,7 @@ fun initInjections(app: BaseApplication): AppComponent {
 }
 
 private fun handleActivity(activity: Activity?) {
-    if (activity is HasSupportFragmentInjector) {
+    if (activity is HasAndroidInjector) {
         AndroidInjection.inject(activity)
     }
     if (activity is FragmentActivity) {

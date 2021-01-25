@@ -6,14 +6,13 @@ import com.workspaceandroid.di.AppComponent
 import com.workspaceandroid.di.initInjections
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
 
-class BaseApplication : Application(), HasActivityInjector {
+class BaseApplication : Application(), HasAndroidInjector {
 
-    @Inject
-    lateinit var dispatchingInjector: DispatchingAndroidInjector<Activity>
+    @Inject lateinit var androidInjector : DispatchingAndroidInjector<Any>
 
     companion object {
         lateinit var instance: BaseApplication
@@ -26,8 +25,7 @@ class BaseApplication : Application(), HasActivityInjector {
         appComponent = initInjections(this)
     }
 
-    override fun activityInjector(): AndroidInjector<Activity> =
-        dispatchingInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     fun getInstance(): BaseApplication {
         return instance

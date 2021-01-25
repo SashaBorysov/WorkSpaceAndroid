@@ -5,7 +5,7 @@ import com.workspaceandroid.BuildConfig
 
 fun logd(tag: String, text: String?) {
     if (!BuildConfig.ENABLE_LOGS) return
-    Log.d(tag, text)
+    Log.d(tag, text!!) //TODO !!
 }
 
 fun loge(tag: String, text: String?, tr: Exception?) {
@@ -15,5 +15,5 @@ fun loge(tag: String, text: String?, tr: Exception?) {
 
 fun loge(tag: String, text: String?) {
     if (!BuildConfig.ENABLE_LOGS) return
-    Log.e(tag, text)
+    Log.e(tag, text!!)
 }

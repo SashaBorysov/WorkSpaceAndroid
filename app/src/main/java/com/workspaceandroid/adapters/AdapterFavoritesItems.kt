@@ -33,10 +33,10 @@ class AdapterFavoritesItems(private val items: List<FavoritesResponse>, val cont
         val favoriteItem = items[position]
         holder.tvFavoriteTitle.text = favoriteItem.name
         holder.tvFavoriteBody.text = favoriteItem.content
-        Picasso.with(context)
-            .load(favoriteItem.image)
-            .placeholder(R.drawable.ic_notifications_black_24dp)
-            .into(holder.ivFavoritePicture, tempCallback())
+//        Picasso.with(context)
+//            .load(favoriteItem.image)
+//            .placeholder(R.drawable.ic_notifications_black_24dp)
+//            .into(holder.ivFavoritePicture)
 //        val picasso = Picasso.Builder(context)
 //            .listener { picasso, uri, exception ->
 //                Log.d("sdad", "dasdas")
@@ -51,17 +51,6 @@ class AdapterFavoritesItems(private val items: List<FavoritesResponse>, val cont
     override fun getItemCount(): Int {
         return items.size
     }
-}
-
-class tempCallback : Callback {
-    override fun onSuccess() {
-        Log.d("sdad", "dasdas")
-    }
-
-    override fun onError() {
-        Log.d("sdad", "dasdas")
-    }
-
 }
 
 class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

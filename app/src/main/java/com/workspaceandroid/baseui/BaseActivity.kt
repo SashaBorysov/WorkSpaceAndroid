@@ -9,14 +9,13 @@ import com.workspaceandroid.utils.extensions.checkPermissionByCode
 import com.workspaceandroid.utils.extensions.showSnackBarIfNeverAskSelectedByCode
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
 
-abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
+abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
 
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+    @Inject lateinit var androidInjector : DispatchingAndroidInjector<Any>
 
     var permissionCallback: (() -> Unit)? = null
     var permissionCancelCallback: (() -> Unit)? = null
@@ -36,8 +35,7 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
         }
     }
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> =
-            dispatchingAndroidInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     protected fun setFragment(fragment: Fragment, containerId: Int) {
         val newFrag = supportFragmentManager.findFragmentByTag(fragment.javaClass.canonicalName)
@@ -69,10 +67,10 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
         supportFragmentManager.beginTransaction().replace(id, frag, tag).commitAllowingStateLoss()
     }
 
-    protected fun isNetworkAvailable(): Boolean {
-        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        return cm.activeNetworkInfo != null && cm.activeNetworkInfo.isConnected
-    }
+//    protected fun isNetworkAvailable(): Boolean {
+//        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+//        return cm.activeNetworkInfo != null && cm.activeNetworkInfo.isConnected
+//    }
 
     interface IOnDialogButtonClickListener {
         fun onButtonClicked()
