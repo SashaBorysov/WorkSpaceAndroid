@@ -15,12 +15,11 @@ import com.workspaceandroid.R
 import com.workspaceandroid.adapters.AdapterFavoritesItems
 import com.workspaceandroid.baseui.BaseFragment
 import com.workspaceandroid.data.remote.responses.FavoritesResponse
-import com.workspaceandroid.models.network.ApiRequestStatus
 import com.workspaceandroid.ui.main.viewModel.MainViewModel
-import kotlinx.android.synthetic.main.fragment_favorites.*
+import kotlinx.android.synthetic.main.fragment_search.*
 import javax.inject.Inject
 
-class FavoritesFragment : BaseFragment() {
+class SearchFragment : BaseFragment() {
 
     @Inject
     lateinit var vmFactory: AppViewModelsFactory
@@ -28,7 +27,7 @@ class FavoritesFragment : BaseFragment() {
     private lateinit var mActivity: Activity
 
     override fun layoutId(): Int {
-        return R.layout.fragment_favorites
+        return R.layout.fragment_search
     }
 
     override fun onViewReady(inflatedView: View, args: Bundle?) {
@@ -44,7 +43,7 @@ class FavoritesFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorites, container, false)
+        return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onAttach(context: Context) {

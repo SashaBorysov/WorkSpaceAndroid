@@ -1,7 +1,8 @@
 package com.workspaceandroid.di.modules
 
 import com.workspaceandroid.ui.login.signIn.SignInFragment
-import com.workspaceandroid.ui.main.fragments.FavoritesFragment
+import com.workspaceandroid.ui.main.fragments.SearchFragment
+import com.workspaceandroid.ui.main.fragments.SettingsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -12,5 +13,8 @@ interface FragmentBuilder {
     fun provideSignInFragment(): SignInFragment
 
     @ContributesAndroidInjector
-    fun provideFavoritesFragment(): FavoritesFragment
+    fun provideFavoritesFragment(): SearchFragment
+
+    @ContributesAndroidInjector
+    fun provideSettingsFragment(): SettingsFragment
 }

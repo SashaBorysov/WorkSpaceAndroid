@@ -33,19 +33,10 @@ class AdapterFavoritesItems(private val items: List<FavoritesResponse>, val cont
         val favoriteItem = items[position]
         holder.tvFavoriteTitle.text = favoriteItem.name
         holder.tvFavoriteBody.text = favoriteItem.content
-//        Picasso.with(context)
-//            .load(favoriteItem.image)
-//            .placeholder(R.drawable.ic_notifications_black_24dp)
-//            .into(holder.ivFavoritePicture)
-//        val picasso = Picasso.Builder(context)
-//            .listener { picasso, uri, exception ->
-//                Log.d("sdad", "dasdas")
-//            }
-//            .build()
-//
-//        picasso.load(favoriteItem.image)
-//            .fit()
-//            .into(holder.ivFavoritePicture)
+
+        Picasso.get()
+            .load(favoriteItem.image)
+            .into(holder.ivFavoritePicture)
     }
 
     override fun getItemCount(): Int {

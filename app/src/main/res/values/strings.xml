@@ -2,9 +2,9 @@
     <string name="app_name">WorkSpaceAndroid</string>
 
     <!-- Main screen -->
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_bottom_nav_search">Search</string>
+    <string name="title_bottom_nav_home">Home</string>
+    <string name="title_bottom_nav_settings">Settings</string>
 
     <string name="loading">Loading</string>
 
@@ -24,6 +24,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_edit_personal_details">Edit personal details</string>
 
 
 </resources>

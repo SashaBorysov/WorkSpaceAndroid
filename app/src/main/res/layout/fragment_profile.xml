@@ -3,11 +3,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.fragments.FavoritesFragment">
+        tools:context=".ui.profile.ProfileFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_favorites_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_bottom_nav_search"/>
 
 </FrameLayout>

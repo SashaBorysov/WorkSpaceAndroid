@@ -36,14 +36,14 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         // Set items to be displayed.
         mainPagerAdapter.setItems(
             arrayListOf(
-                MainScreen.LOGS,
-                MainScreen.PROGRESS,
-                MainScreen.PROFILE
+                MainScreen.SEARCH,
+                MainScreen.HOME,
+                MainScreen.SETTING
             )
         )
 
         // Show the default screen.
-        val defaultScreen = MainScreen.LOGS
+        val defaultScreen = MainScreen.HOME
         scrollToScreen(defaultScreen)
         selectBottomNavigationViewMenuItem(defaultScreen.menuItemId)
 //        supportActionBar?.setTitle(defaultScreen.titleStringId)
@@ -58,9 +58,9 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
             private var prevPosition = 0.0f
 
             override fun onPageSelected(position: Int) {
-                val animation1: Animation =
-                    AnimationUtils.loadAnimation(applicationContext, R.anim.sliding)
-                tv_main_toolbar_title.startAnimation(animation1)
+//                val animation1: Animation =
+//                    AnimationUtils.loadAnimation(applicationContext, R.anim.sliding)
+//                tv_main_toolbar_title.startAnimation(animation1)
                 selectedPage = position;
                 val selectedScreen = mainPagerAdapter.getItems()[position]
                 selectBottomNavigationViewMenuItem(selectedScreen.menuItemId)

@@ -5,8 +5,8 @@ import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.workspaceandroid.R
-import com.workspaceandroid.ui.main.fragments.AccountFragment
-import com.workspaceandroid.ui.main.fragments.FavoritesFragment
+import com.workspaceandroid.ui.main.fragments.SettingsFragment
+import com.workspaceandroid.ui.main.fragments.SearchFragment
 import com.workspaceandroid.ui.main.fragments.HomeFragment
 
 /**
@@ -18,9 +18,9 @@ enum class MainScreen(@IdRes val menuItemId: Int,
                       @StringRes val titleStringId: Int,
                       val fragment: Fragment
 ) {
-    LOGS(R.id.navigation_home, R.drawable.ic_home_black_24dp, R.string.title_home, FavoritesFragment()),
-    PROGRESS(R.id.navigation_dashboard, R.drawable.ic_home_black_24dp, R.string.title_dashboard, HomeFragment()),
-    PROFILE(R.id.navigation_notifications, R.drawable.ic_home_black_24dp, R.string.title_notifications, AccountFragment())
+    SEARCH(R.id.navigation_search, R.drawable.ic_bottom_nav_search, R.string.title_bottom_nav_search, SearchFragment()),
+    HOME(R.id.navigation_home, R.drawable.ic_bottom_nav_home, R.string.title_bottom_nav_home, HomeFragment()),
+    SETTING(R.id.navigation_settings, R.drawable.ic_bottom_nav_settings, R.string.title_bottom_nav_settings, SettingsFragment())
 }
 
 fun getMainScreenForMenuItem(menuItemId: Int): MainScreen? {
